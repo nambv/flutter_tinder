@@ -2,6 +2,10 @@
   "helloWorld": "Hello World!",
   "@helloWorld": {
     "description": "The conventional newborn programmer greeting"
-  }
+  },
+  "timeoutErrorMsg": "The connection is timeout. Please try again later",
+  "networkErrorMsg": "Can't connect to server. Please try again later",
+  "unknownError": "Something's wrong. Please try again later",
+  "retry": "Retry"
 }
 
