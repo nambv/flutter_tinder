@@ -13,6 +13,7 @@ class User extends ChangeNotifier {
     this.lastName,
     this.picture, {
     this.dateOfBirth,
+    this.isSuperLike = false,
   });
 
   String id;
@@ -23,6 +24,8 @@ class User extends ChangeNotifier {
 
   @DateTimeConverter()
   DateTime? dateOfBirth;
+
+  bool isSuperLike; // mark super like
 
   setDateOfBirth(DateTime? value) {
     dateOfBirth = value;

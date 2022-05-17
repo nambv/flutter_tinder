@@ -10,6 +10,8 @@ import 'package:tinder/util/enums.dart';
 class CardsModel extends BaseModel {
   int page = 1;
   List<User> users = [];
+  List<User> liked = [];
+  List<User> passed = [];
   UserRepository repository;
 
   CardsModel(this.repository);
@@ -17,6 +19,8 @@ class CardsModel extends BaseModel {
   @override
   loadData() async {
     setState(ViewState.loading);
+    await Future.delayed(
+        Duration(milliseconds: 700)); // delay to show ripple animation
 
     try {
       users = await repository.listUsers(UserParams(page: page));
@@ -31,6 +35,15 @@ class CardsModel extends BaseModel {
   getDetail(int index, String id) async {
     final user = await repository.getDetail(id);
     users[index].setDateOfBirth(user.dateOfBirth);
+  }
+
+  addLiked(User user, {bool isSuperLike = false}) {
+    user.isSuperLike = isSuperLike;
+    liked.add(user);
+  }
+
+  addPassed(User user) {
+    passed.add(user);
   }
 
   clearUsers() {

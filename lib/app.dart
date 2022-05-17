@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tinder/res/routes.dart';
 import 'package:tinder/tinder.dart';
-import 'package:tinder/ui/screens/cards/cards_page.dart';
+import 'package:tinder/ui/screens/cards/cards_screen.dart';
+import 'package:tinder/ui/screens/view_list/view_list_screen.dart';
 
 import 'data/services/navigation_service.dart';
 
@@ -21,6 +22,10 @@ class _TinderAppState extends State<TinderApp> {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.pink,
+        ),
+        appBarTheme: AppBarTheme(iconTheme: IconThemeData(color: Colors.pink)),
         textTheme: GoogleFonts.montserratAlternatesTextTheme(
           Theme.of(context).textTheme,
         ),
@@ -34,8 +39,15 @@ class _TinderAppState extends State<TinderApp> {
     switch (settings.name) {
       case Routes.root:
         return MaterialPageRoute(
-          settings: RouteSettings(name: Routes.root),
-          builder: (_) => CardsPage(),
+          settings: RouteSettings(name: settings.name),
+          builder: (_) => CardsScreen(),
+        );
+
+      case Routes.viewList:
+        final args = settings.arguments as ViewListArgs;
+        return MaterialPageRoute(
+          settings: RouteSettings(name: settings.name),
+          builder: (_) => ViewListScreen(args: args),
         );
 
       default:

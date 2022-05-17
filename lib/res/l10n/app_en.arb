@@ -1,12 +1,12 @@
 {
   "tinder": "Tinder",
-  "helloWorld": "Hello World!",
-  "@helloWorld": {
-    "description": "The conventional newborn programmer greeting"
-  },
   "timeoutErrorMsg": "The connection is timeout. Please try again later",
   "networkErrorMsg": "Can't connect to server. Please try again later",
   "unknownError": "Something's wrong. Please try again later",
-  "retry": "Retry"
+  "retry": "Retry",
+  "likedList": "Liked List",
+  "secondLook": "Second Look",
+  "likedListEmptyMsg": "Your liked people will be showed here",
+  "secondLookEmptyMsg": "View people that you've passed"
 }
 
