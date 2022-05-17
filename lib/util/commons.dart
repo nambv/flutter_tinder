@@ -24,7 +24,7 @@ String getErrorMessage(dynamic error, StackTrace? stackTrace) {
         case DioErrorType.other:
           return context.localizations.networkErrorMsg;
         default:
-          return error.message;
+          return error.response?.data["error"];
       }
     }
   }

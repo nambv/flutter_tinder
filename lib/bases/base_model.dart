@@ -21,7 +21,7 @@ abstract class BaseModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  loadData([param]) {}
+  loadData() {}
 }
 
 mixin ProgressModel {

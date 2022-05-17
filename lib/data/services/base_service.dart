@@ -11,10 +11,9 @@ class BaseService {
   BaseService(this.restClient);
 
   Future<dynamic> get(String path,
-      {Map<String, dynamic>? queryParameters,
-      Map<String, String>? headers}) async {
-    final response = await restClient.dio.get(path,
-        queryParameters: queryParameters, options: Options(headers: headers));
+      {Map<String, dynamic>? queryParameters}) async {
+    final response =
+        await restClient.dio.get(path, queryParameters: queryParameters);
     return _handleResponse(response);
   }
 
@@ -83,7 +82,6 @@ class BaseService {
       return response.data;
     }
 
-    print('response.data["errors"]: ${json.encode(response.data["errors"])}');
-    throw ApiException.fromJson(response.data["errors"]);
+    throw ApiException.fromJson(response.data);
   }
 }

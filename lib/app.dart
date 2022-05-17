@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tinder/res/routes.dart';
 import 'package:tinder/tinder.dart';
-import 'package:tinder/ui/screens/main_screen.dart';
+import 'package:tinder/ui/screens/cards/cards_screen.dart';
 
 import 'data/services/navigation_service.dart';
 
@@ -30,7 +30,7 @@ class _TinderAppState extends State<TinderApp> {
       case Routes.root:
         return MaterialPageRoute(
           settings: RouteSettings(name: Routes.root),
-          builder: (_) => MainScreen(),
+          builder: (_) => CardsScreen(),
         );
 
       default:
