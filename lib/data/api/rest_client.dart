@@ -19,6 +19,7 @@ class RestClient {
         connectTimeout: kTimeout,
         receiveTimeout: kTimeout,
         headers: {
+          'app-id': '628287370c68372f90872c52',
           'Content-Type': 'application/json',
         },
       ),
