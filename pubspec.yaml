@@ -23,6 +23,10 @@ dependencies:
   get_it: ^7.2.0
   shared_preferences: ^2.0.13
   intl: ^0.17.0
+  swipe_cards: ^1.0.0
+  simple_ripple_animation: ^0.0.3
+  cached_network_image: ^3.2.0
+  google_fonts: ^2.3.2
 
 dev_dependencies:
   injectable_generator:
@@ -32,3 +36,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+
+  assets:
+    - assets/images/

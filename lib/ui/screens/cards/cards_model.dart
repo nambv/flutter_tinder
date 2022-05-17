@@ -26,4 +26,9 @@ class CardsModel extends BaseModel {
       setState(ViewState.error, error: errorMsg);
     }
   }
+
+  clearUsers() {
+    users.clear();
+    notifyListeners();
+  }
 }

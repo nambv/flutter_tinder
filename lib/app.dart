@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tinder/res/routes.dart';
 import 'package:tinder/tinder.dart';
-import 'package:tinder/ui/screens/cards/cards_screen.dart';
+import 'package:tinder/ui/screens/cards/cards_page.dart';
 
 import 'data/services/navigation_service.dart';
 
@@ -19,7 +20,11 @@ class _TinderAppState extends State<TinderApp> {
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(
+        textTheme: GoogleFonts.montserratAlternatesTextTheme(
+          Theme.of(context).textTheme,
+        ),
+      ),
       initialRoute: Routes.root,
       onGenerateRoute: _getRoute,
     );
@@ -30,7 +35,7 @@ class _TinderAppState extends State<TinderApp> {
       case Routes.root:
         return MaterialPageRoute(
           settings: RouteSettings(name: Routes.root),
-          builder: (_) => CardsScreen(),
+          builder: (_) => CardsPage(),
         );
 
       default:

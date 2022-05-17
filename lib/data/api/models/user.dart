@@ -18,6 +18,8 @@ class User {
   String lastName;
   String picture;
 
+  String get fullName => "$firstName $lastName";
+
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
