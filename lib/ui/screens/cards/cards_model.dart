@@ -21,10 +21,16 @@ class CardsModel extends BaseModel {
     try {
       users = await repository.listUsers(UserParams(page: page));
       setState(ViewState.loaded);
+      getDetail(0, users.first.id);
     } catch (error, stacktrace) {
       errorMsg = getErrorMessage(error, stacktrace);
       setState(ViewState.error, error: errorMsg);
     }
+  }
+
+  getDetail(int index, String id) async {
+    final user = await repository.getDetail(id);
+    users[index].setDateOfBirth(user.dateOfBirth);
   }
 
   clearUsers() {

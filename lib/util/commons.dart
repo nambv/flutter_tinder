@@ -1,10 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:tinder/data/api/exception/api_exception.dart';
 import 'package:tinder/data/services/navigation_service.dart';
 import 'package:tinder/tinder.dart';
 
 String getErrorMessage(dynamic error, StackTrace? stackTrace) {
+  if (!kReleaseMode) print(stackTrace);
+
   if (error is ApiException) {
     return error.error;
   }

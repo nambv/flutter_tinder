@@ -12,4 +12,9 @@ class UserService extends BaseService {
     final response = await get(UsersApi.list, queryParameters: params.toJson());
     return response;
   }
+
+  Future<Map<String, dynamic>> getDetail(String id) async {
+    final response = await get(UsersApi.detail.replaceAll("{id}", id));
+    return response;
+  }
 }

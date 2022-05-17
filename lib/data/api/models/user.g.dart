@@ -12,6 +12,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       json['firstName'] as String,
       json['lastName'] as String,
       json['picture'] as String,
+      dateOfBirth: const DateTimeConverter().fromJson(json['dateOfBirth']),
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -20,4 +21,5 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'picture': instance.picture,
+      'dateOfBirth': const DateTimeConverter().toJson(instance.dateOfBirth),
     };

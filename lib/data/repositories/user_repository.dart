@@ -16,4 +16,9 @@ class UserRepository {
             .toList();
     return list;
   }
+
+  Future<User> getDetail(String id) async {
+    final response = await service.getDetail(id);
+    return User.fromJson(response);
+  }
 }

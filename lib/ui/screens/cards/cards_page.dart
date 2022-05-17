@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 import 'package:tinder/bases/base_state.dart';
@@ -53,6 +54,8 @@ class _CardsPageState extends BaseViewState<CardsModel, CardsPage> {
 
   @override
   Widget buildLoadedView(BuildContext context, CardsModel model) {
+    print('buildLoadedView');
+
     _swipeItems.addAll(model.users.map((user) => _createSwipeItem(user)));
     _matchEngine = MatchEngine(swipeItems: _swipeItems);
 
@@ -68,7 +71,7 @@ class _CardsPageState extends BaseViewState<CardsModel, CardsPage> {
               return UserItemCard(item: item);
             },
             itemChanged: (item, index) {
-              // TODO: Load age for item
+              model.getDetail(index, item.content.id);
             },
             onStackFinished: () async {
               _swipeItems.clear();
@@ -147,46 +150,54 @@ class UserItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      child: Stack(
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10.0),
-              child: CachedNetworkImage(
-                imageUrl: item.picture,
-                fit: BoxFit.cover,
-                placeholder: (context, url) => SizedBox(
-                  width: 32,
-                  height: 32,
-                  child: LoadingWidget(),
+    return ChangeNotifierProvider.value(
+      value: item,
+      child: Card(
+        clipBehavior: Clip.antiAlias,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        child: Stack(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: CachedNetworkImage(
+                  imageUrl: item.picture,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => SizedBox(
+                    width: 32,
+                    height: 32,
+                    child: LoadingWidget(),
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  memCacheHeight: MediaQuery.of(context).size.width.toInt(),
+                  memCacheWidth: MediaQuery.of(context).size.height.toInt(),
                 ),
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                memCacheHeight: MediaQuery.of(context).size.width.toInt(),
-                memCacheWidth: MediaQuery.of(context).size.height.toInt(),
               ),
             ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: Text(
-                item.fullName,
-                style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w900),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                child: Consumer<User>(
+                  builder: (ctx, user, child) => Text(
+                    user.dateOfBirth == null
+                        ? user.firstName
+                        : "${user.firstName} ${user.age}",
+                    style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w900),
+                  ),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
