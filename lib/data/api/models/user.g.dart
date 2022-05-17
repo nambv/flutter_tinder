@@ -13,6 +13,7 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       json['lastName'] as String,
       json['picture'] as String,
       dateOfBirth: const DateTimeConverter().fromJson(json['dateOfBirth']),
+      isSuperLike: json['isSuperLike'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -22,4 +23,5 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'lastName': instance.lastName,
       'picture': instance.picture,
       'dateOfBirth': const DateTimeConverter().toJson(instance.dateOfBirth),
+      'isSuperLike': instance.isSuperLike,
     };
