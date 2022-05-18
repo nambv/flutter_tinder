@@ -89,6 +89,7 @@ class _CardsScreenState extends BaseViewState<CardsModel, CardsScreen> {
             children: [
               Expanded(
                 child: SwipeCards(
+                  upSwipeAllowed: true,
                   matchEngine: _matchEngine!,
                   itemBuilder: (context, index) {
                     final item = _swipeItems[index].content;
