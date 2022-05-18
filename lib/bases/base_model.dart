@@ -23,8 +23,3 @@ abstract class BaseModel extends ChangeNotifier {
 
   loadData() {}
 }
-
-mixin ProgressModel {
-  ValueNotifier<ProgressState> progressState =
-      ValueNotifier(ProgressState.initial);
-}
