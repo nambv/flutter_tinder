@@ -46,3 +46,5 @@ Tinder application
 - Android / iOS: ```flutter run```
 - Web: ```flutter run -d chrome --web-renderer html```
 
+## Demo
+- Download APK: https://drive.google.com/file/d/1ft8Et_qP0pCs3I9p5jKIH-hOGjCcG1RP/view?usp=sharing
